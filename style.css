@@ -1,0 +1,54 @@
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    width: 150px;
+}
+
+.item-value,
+.item-weight {
+    font-weight: bold;
+}
+
+
+.selected {
+    background-color: green;
+}
+
+.not-selected {
+    background-color: red;
+}
+
+.item-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+}
+
+.obstacle-1 {
+    background-image: url(https://creazilla-store.fra1.digitaloceanspaces.com/emojis/44370/desert-island-emoji-clipart-xl.png);
+    background-size: 150%;
+    background-position: center 35%;
+}
+
+.obstacle-2 {
+    background-image: url(https://images.squarespace-cdn.com/content/v1/5c86919db7c92c1344bc8064/1679642191387-KW94VVQ51MF8VH5BRCNV/goldNuggitX3.gif?format=1500w);
+    background-size: 70%;
+    background-position: center 95%;
+}
+
+.obstacle-3 {
+    background-image: url(https://images.squarespace-cdn.com/content/v1/5c86919db7c92c1344bc8064/1679642329768-R7J9PRUDJUJKW3BYPCDQ/babkyKraken.gif?format=1500w);
+    background-size: 170%;
+    background-position: center 40%;
+}
+
+.obstacle-4 {
+    background-image: url(https://thumbs.gfycat.com/AccomplishedOldfashionedHeron-max-1mb.gif);
+    background-size: 120%;
+    background-position: center;
+}
