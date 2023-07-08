@@ -1,34 +1,162 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Knapsack Algorithm</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Mochila do Pirata</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 </head>
+  
+  
 <body>
-    <h1>Knapsack Algorithm</h1>
-    
-    <div>
-        <label for="capacity">Mochila (capacidade):</label>
-        <input type="number" id="capacity" min="0" step="1">
-        <button onclick="addItem()">Adicionar Item</button>
+  <div class="logo">
+    <img src="https://images.squarespace-cdn.com/content/v1/5c86919db7c92c1344bc8064/1679641884854-K6H8YJUYJ61QZVMIG5VB/captChestIdleHit.gif?format=500w" alt="A Mochila do Pirata Logo">
+    <h1>Mar dos Saqueadores</h1>
+  </div>
+  
+  <div class="container">
+    <div class="controls">
+      <h2>Controles</h2>
+      <div class="control">
+        <label for="capacidade">Capacidade:</label>
+        <input type="number" id="capacidade" min="1" value="10">
+      </div>
+      <div class="control">
+        <button id="aleatorizar">Aleatorizar</button>
+      </div>
+      <div class="control">
+        <button id="limpar">Limpar</button>
+      </div>
+      <div class="control">
+        <button id="calcular">Calcular</button>
+      </div>
     </div>
-    
-    <div id="itemsContainer">
-        <!-- Itens serão adicionados aqui -->
+    <div class="content">
+      <div class="result">
+        <h2>Resultado</h2>
+        <div class="result-item">
+          <span class="item-label">qtdItens:</span>
+          <div class="item-value">0</div>
+        </div>
+        <div class="result-item">
+          <span class="item-label">valorTotal:</span>
+          <div class="item-value">0</div>
+        </div>
+        <div class="result-item">
+          <span class="item-label">pesoTotal:</span>
+          <div class="item-value">0</div>
+        </div>
+      </div>
+      <div class="items">
+        <h2>Itens</h2>
+        <div class="item-row">
+          <div class="item">
+            <div class="item-number">1</div>
+            <div class="item-input">
+              <span class="item-label">V:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+            <div class="item-input">
+              <span class="item-label">P:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-number">2</div>
+            <div class="item-input">
+              <span class="item-label">V:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+            <div class="item-input">
+              <span class="item-label">P:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-number">3</div>
+            <div class="item-input">
+              <span class="item-label">V:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+            <div class="item-input">
+              <span class="item-label">P:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item">
+            <div class="item-number">4</div>
+            <div class="item-input">
+              <span class="item-label">V:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+            <div class="item-input">
+              <span class="item-label">P:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-number">5</div>
+            <div class="item-input">
+              <span class="item-label">V:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+            <div class="item-input">
+              <span class="item-label">P:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-number">6</div>
+            <div class="item-input">
+              <span class="item-label">V:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+            <div class="item-input">
+              <span class="item-label">P:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+          </div>
+        </div>
+        <div class="item-row">
+          <div class="item">
+            <div class="item-number">7</div>
+            <div class="item-input">
+              <span class="item-label">V:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+            <div class="item-input">
+              <span class="item-label">P:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-number">8</div>
+            <div class="item-input">
+              <span class="item-label">V:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+            <div class="item-input">
+              <span class="item-label">P:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-number">9</div>
+            <div class="item-input">
+              <span class="item-label">V:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+            <div class="item-input">
+              <span class="item-label">P:</span>
+              <input type="number" class="item-value-input" placeholder="0" value="0">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
-    <div>
-        <label for="totalItems">Itens Levados:</label>
-        <span id="totalItems">0</span>
-    </div>
-    
-    <div>
-        <label for="totalValue">Valor Total:</label>
-        <span id="totalValue">0</span>
-    </div>
-    
-    <button onclick="knapsack()">Calcular Knapsack</button>
-    
-    <script src="script.js"></script>
+  </div>
 </body>
 </html>
