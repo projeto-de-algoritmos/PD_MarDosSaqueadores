@@ -1,137 +1,116 @@
-let items = [];
+// Função para gerar um número aleatório entre min e max (inclusive)
+function gerarNumeroAleatorio(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-function addItem() {
-    const itemValue = parseInt(prompt("Valor do item:"));
-    const itemWeight = parseInt(prompt("Peso do item:"));
+// Função para aleatorizar os valores e pesos dos itens
+function aleatorizarItens() {
+  const itensInputs = document.getElementsByClassName('item-value-input');
 
-    if (itemValue >= 0 && itemWeight >= 0) {
-        const item = {
-            value: itemValue,
-            weight: itemWeight
-        };
+  // Itera sobre os inputs de valor e peso dos itens
+  for (let i = 0; i < itensInputs.length; i++) {
+    const valorAleatorio = gerarNumeroAleatorio(1, 20);
+    const pesoAleatorio = gerarNumeroAleatorio(1, 5);
 
-        items.push(item);
+    // Define os valores aleatórios nos inputs correspondentes
+    itensInputs[i].value = valorAleatorio;
+    itensInputs[i + 1].value = pesoAleatorio;
 
-        renderItems();
+    // Pula para o próximo input de peso
+    i++;
+  }
+}
+
+// Função para limpar os valores e pesos dos itens
+function limparItens() {
+  const itensInputs = document.getElementsByClassName('item-value-input');
+
+  // Itera sobre os inputs de valor e peso dos itens
+  for (let i = 0; i < itensInputs.length; i++) {
+    itensInputs[i].value = 0;
+    itensInputs[i + 1].value = 0;
+
+    // Pula para o próximo input de peso
+    i++;
+  }
+}
+
+// Função para calcular os resultados
+function calcularResultados() {
+  // Implemente o cálculo dos resultados conforme necessário
+  // e atualize os valores exibidos nos elementos de resultado.
+}
+
+// Evento de clique no botão "Aleatorizar"
+document.getElementById('aleatorizar').addEventListener('click', function () {
+  aleatorizarItens();
+});
+
+// Evento de clique no botão "Limpar"
+document.getElementById('limpar').addEventListener('click', function () {
+  limparItens();
+});
+
+// Evento de clique no botão "Calcular"
+document.getElementById('calcular').addEventListener('click', function () {
+  calcularResultados();
+});
+
+// Função para calcular o algoritmo da mochila
+function calcularMochila() {
+  const capacidade = parseInt(document.getElementById('capacidade').value);
+  const itens = document.getElementsByClassName('item');
+  const qtdItensElement = document.querySelector('.result-item .item-value');
+  const valorTotalElement = document.querySelectorAll('.result-item .item-value')[1];
+  const pesoTotalElement = document.querySelectorAll('.result-item .item-value')[2];
+
+  let qtdItens = 0;
+  let valorTotal = 0;
+  let pesoTotal = 0;
+
+  const dp = [];
+  for (let i = 0; i <= itens.length; i++) {
+    dp[i] = [];
+    for (let j = 0; j <= capacidade; j++) {
+      dp[i][j] = 0;
+    }
+  }
+
+  for (let i = 1; i <= itens.length; i++) {
+    const valor = parseInt(itens[i - 1].querySelector('.item-value-input').value);
+    const peso = parseInt(itens[i - 1].querySelectorAll('.item-value-input')[1].value);
+
+    for (let j = 1; j <= capacidade; j++) {
+      if (peso > j) {
+        dp[i][j] = dp[i - 1][j];
+      } else {
+        dp[i][j] = Math.max(dp[i - 1][j], valor + dp[i - 1][j - peso]);
+      }
+    }
+  }
+
+  let j = capacidade;
+  for (let i = itens.length; i > 0; i--) {
+    const valor = parseInt(itens[i - 1].querySelector('.item-value-input').value);
+    const peso = parseInt(itens[i - 1].querySelectorAll('.item-value-input')[1].value);
+
+    if (dp[i][j] > dp[i - 1][j]) {
+      itens[i - 1].classList.add('item-taken');
+      qtdItens++;
+      valorTotal += valor;
+      pesoTotal += peso;
+      j -= peso;
     } else {
-        alert("Por favor, preencha corretamente os valores do item.");
+      itens[i - 1].classList.remove('item-taken');
     }
+  }
+
+  qtdItensElement.textContent = qtdItens;
+  valorTotalElement.textContent = valorTotal;
+  pesoTotalElement.textContent = pesoTotal;
 }
 
-function removeItem(index) {
-    items.splice(index, 1);
-    renderItems();
-}
-
-function renderItems() {
-    const itemsContainer = document.getElementById("itemsContainer");
-    itemsContainer.innerHTML = "";
-
-    items.forEach((item, index) => {
-        const newItemElement = document.createElement("div");
-        newItemElement.className = "item";
-
-        const obstacleClass = generateObstacleClass();
-        const itemImageElement = document.createElement("div");
-        itemImageElement.className = "item-image";
-        itemImageElement.classList.add("obstacle", obstacleClass);
-
-        newItemElement.appendChild(itemImageElement);
-
-        const itemValueElement = document.createElement("div");
-        itemValueElement.className = "item-value";
-        itemValueElement.textContent = `Valor ${item.value}`;
-
-        const itemWeightElement = document.createElement("div");
-        itemWeightElement.className = "item-weight";
-        itemWeightElement.textContent = `Peso ${item.weight}`;
-
-        const removeButton = document.createElement("button");
-        removeButton.textContent = "-";
-        removeButton.onclick = () => removeItem(index);
-
-        newItemElement.appendChild(itemValueElement);
-        newItemElement.appendChild(itemWeightElement);
-        newItemElement.appendChild(removeButton);
-
-        itemsContainer.appendChild(newItemElement);
-    });
-}
-
-function generateObstacleClass() {
-    let obstacleClass = "";
-    let random = Math.random();
-
-    if (random < 0.8) {
-        obstacleClass = "obstacle-1";
-    } else if (random < 0.9) {
-        obstacleClass = "obstacle-2";
-    } else if (random < 0.95) {
-        obstacleClass = "obstacle-3";
-    } else {
-        obstacleClass = "obstacle-4";
-    }
-
-    return obstacleClass;
-}
-
-
-function knapsack() {
-    const capacity = parseInt(document.getElementById("capacity").value);
-    const n = items.length;
-
-    const dp = new Array(n + 1);
-    for (let i = 0; i <= n; i++) {
-        dp[i] = new Array(capacity + 1).fill(0);
-    }
-
-    for (let i = 1; i <= n; i++) {
-        for (let w = 1; w <= capacity; w++) {
-            if (items[i - 1].weight <= w) {
-                dp[i][w] = Math.max(
-                    items[i - 1].value + dp[i - 1][w - items[i - 1].weight],
-                    dp[i - 1][w]
-                );
-            } else {
-                dp[i][w] = dp[i - 1][w];
-            }
-        }
-    }
-
-    const selectedItems = [];
-    let i = n,
-        w = capacity;
-
-    while (i > 0 && w > 0) {
-        if (dp[i][w] !== dp[i - 1][w]) {
-            selectedItems.push(items[i - 1]);
-            w -= items[i - 1].weight;
-        }
-        i--;
-    }
-
-    renderItemsWithSelection(selectedItems);
-}
-
-function renderItemsWithSelection(selectedItems) {
-    const itemsContainer = document.getElementById("itemsContainer");
-    const itemElements = itemsContainer.getElementsByClassName("item");
-
-    for (let i = 0; i < itemElements.length; i++) {
-        const itemElement = itemElements[i];
-        if (selectedItems.includes(items[i])) {
-            itemElement.classList.add("selected");
-            itemElement.classList.remove("not-selected");
-        } else {
-            itemElement.classList.add("not-selected");
-            itemElement.classList.remove("selected");
-        }
-    }
-
-    const totalItemsElement = document.getElementById("totalItems");
-    totalItemsElement.textContent = selectedItems.length;
-
-    const totalValueElement = document.getElementById("totalValue");
-    const totalValue = selectedItems.reduce((sum, item) => sum + item.value, 0);
-    totalValueElement.textContent = totalValue;
-}
+// Evento de clique no botão "Calcular"
+document.getElementById('calcular').addEventListener('click', function () {
+  calcularMochila();
+});
