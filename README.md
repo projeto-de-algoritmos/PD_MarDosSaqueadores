@@ -1,7 +1,7 @@
 # Ilhas Vizinhas
 
 **Número da Lista**: 37<br>
-**Conteúdo da Disciplina**: Dividir e Conquistar<br>
+**Conteúdo da Disciplina**: Programação Dinâmica<br>
 
 ## Alunos
 |Matrícula | Aluno |
@@ -10,49 +10,27 @@
 | 19/0038900  |  Victor de Souza Cabral |
 
 ## Sobre 
-As "Ilhas Vizinhas" é um projeto que utiliza o algoritmo de "Dividir e Conquistar". Neste jogo, você embarcará em uma aventura pirata, explorando um mapa cheio de ilhas misteriosas.
+O "Mar dos Saqueadores" é um projeto que utiliza o conceito de programação dinâmica para resolver o problema da mochila em um jogo com temática pirata.
 
-O objetivo principal é encontrar as ilhas mais próximas umas das outras, utilizando o algoritmo de "Dividir e Conquistar". O algoritmo divide o mapa em regiões menores, conquistando cada uma delas de forma eficiente e combinando os resultados para encontrar as ilhas vizinhas mais próximas.
+O objetivo do jogo é preencher uma mochila de capacidade limitada com tesouros, maximizando o valor total dos tesouros coletados. Os jogadores podem interagir com o jogo através dos controles disponíveis.
+
+Você terá uma experiência interativa na qual desafia os jogadores a tomarem decisões estratégicas sobre quais tesouros coletar para maximizar seus ganhos enquanto lidam com a limitação de espaço na mochila.
 
 ## Screenshots
-<img src="assets/print1-entrega4.png" style="display: block; margin-left: auto; margin-right: auto;">
+<img src="assets/print1-entrega5.png" style="display: block; margin-left: auto; margin-right: auto;">
 
-<img src="assets/print2-entrega4.png" style="display: block; margin-left: auto; margin-right: auto;">
+<img src="assets/print2-entrega5.png" style="display: block; margin-left: auto; margin-right: auto;">
 
-<img src="assets/print3-entrega4.png" style="display: block; margin-left: auto; margin-right: auto;">
+<img src="assets/print3-entrega5.png" style="display: block; margin-left: auto; margin-right: auto;">
 
-## Vídeo de Apresentação (Dividir e Conquistar)
+## Vídeo de Apresentação
 
-**Conteúdo:** Dividir e Conquistar.
+**Conteúdo:** Programação Dinâmica.
 
-Vídeo contendo explicação das modificações feitas para a entrega da unidade 4. Foco em apresentar as novidades implementadas. 
-
-(Para melhor contexto do projeto em geral assistir os vídeos de apresentação complementar).
+Vídeo contendo explicação da projeto para entrega da unidade 5.
 
 <a href="https://www.youtube.com/watch?v=_AayZgUEeL8" target="_blank">
-  <img src="assets/print2-entrega4.png" alt="Apresentação">
-</a>
-
-## Vídeo de Apresentação Complementar (Grafos 1, Grafos 2 e Knapsack)
-
-Vídeos complementares contendo explicação da entrega feita para a unidade 1, 2 e 3. 
-
-**Conteúdo:** Depth First Search (DFS) ou Breadth First Search (BFS)
-
-<a href="https://www.youtube.com/watch?v=L_0gyZoNA6s" target="_blank">
-  <img src="assets/link_video.png" alt="Apresentação">
-</a>
-
-**Conteúdo:** Dijkstra.
-
-<a href="https://www.youtube.com/watch?v=q8ADh35hU58" target="_blank">
-  <img src="assets/link_video2.png" alt="Apresentação">
-</a>
-
-**Conteúdo:** Knapsack.
-
-<a href="https://www.youtube.com/watch?v=wWZEXSx-Xvw" target="_blank">
-  <img src="assets/print2-entrega3.png" alt="Apresentação">
+  <img src="assets/print1-entrega5.png" alt="Apresentação">
 </a>
 
 ## Instalação 
@@ -60,9 +38,15 @@ Vídeos complementares contendo explicação da entrega feita para a unidade 1, 
 **Framework**: Não há necessidade de instalar nenhum framework. Para rodar o projeto, basta clonar o repositório e abrir o arquivo index.html no navegador ou acessar o link.<br>
 
 ## Uso 
-**Acessar o link:** <https://projeto-de-algoritmos.github.io/DC_IlhasVizinhas/>
+**Acessar o link:** <https://projeto-de-algoritmos.github.io/PD_MarDosSaqueadores/>
 
-Para começar a sua jornada, você terá controle sobre a quantidade de ilhas destacadas. Clicando no botão "Aleatorizar", as Ilhas serão espalhados pelo mapa, aumentando a emoção da busca. Em seguida, basta acionar o botão "Dividir e Conquistar" para encontrar as ilhas mais próximas umas das outras. Se desejar explorar novos mares, clique no botão "Limpar" e inicie uma nova busca em um mapa em branco.
+Na seção de controles temos um campo para controlar a capacidade da mochila, além de botões para aleatorizar os valores dos tesouros, limpar os valores e calcular os resultados.
+
+Os resultados são exibidos em uma seção separada, onde são mostrados o número total de tesouros coletados, o valor total dos tesouros e o peso total dos tesouros na mochila.
+
+A seção de itens mostra uma lista de tesouros disponíveis. Cada tesouro é representado por um número, seguido por campos de entrada para especificar o valor e o peso do tesouro. Os jogadores podem inserir valores para cada tesouro manualmente ou utilizar o botão "Aleatorizar" para gerar valores aleatórios. 
+
+Ao clicar no botão "Calcular", o jogo utiliza o algoritmo de programação dinâmica para determinar a melhor combinação de tesouros a serem colocados na mochila, considerando a capacidade da mochila informada. Os tesouros selecionados são marcados em verde e os resultados são atualizados.
 
 ## Outros 
 Este projeto foi criado como parte do curso de Projeto de Algoritmos da Faculdade do Gama - Universidade de Brasília (FGA-UnB). Qualquer sugestão ou contribuição é bem-vinda.
