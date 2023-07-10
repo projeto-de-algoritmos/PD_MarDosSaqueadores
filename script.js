@@ -1,62 +1,62 @@
-// Função para gerar um número aleatório entre min e max (inclusive)
+const pirate_music = new Audio("assets/pirate_music.mp3");
+pirate_music.loop = true;
+pirate_music.volume = 0.3;
+
+let random = new Audio("assets/random.mp3");
+random.volume = 0.5;
+
+let clear = new Audio("assets/clear.mp3");
+clear.volume = 0.3;
+
+let calculate = new Audio("assets/calculate.mp3");
+
 function gerarNumeroAleatorio(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Função para aleatorizar os valores e pesos dos itens
 function aleatorizarItens() {
   const itensInputs = document.getElementsByClassName('item-value-input');
 
-  // Itera sobre os inputs de valor e peso dos itens
   for (let i = 0; i < itensInputs.length; i++) {
     const valorAleatorio = gerarNumeroAleatorio(1, 20);
     const pesoAleatorio = gerarNumeroAleatorio(1, 5);
 
-    // Define os valores aleatórios nos inputs correspondentes
     itensInputs[i].value = valorAleatorio;
     itensInputs[i + 1].value = pesoAleatorio;
 
-    // Pula para o próximo input de peso
     i++;
   }
 }
 
-// Função para limpar os valores e pesos dos itens
 function limparItens() {
   const itensInputs = document.getElementsByClassName('item-value-input');
 
-  // Itera sobre os inputs de valor e peso dos itens
   for (let i = 0; i < itensInputs.length; i++) {
     itensInputs[i].value = 0;
     itensInputs[i + 1].value = 0;
 
-    // Pula para o próximo input de peso
     i++;
   }
 }
 
-// Função para calcular os resultados
-function calcularResultados() {
-  // Implemente o cálculo dos resultados conforme necessário
-  // e atualize os valores exibidos nos elementos de resultado.
-}
+function calcularResultados() {}
 
-// Evento de clique no botão "Aleatorizar"
 document.getElementById('aleatorizar').addEventListener('click', function () {
+  random.play();
   aleatorizarItens();
+  calcularMochila();
 });
 
-// Evento de clique no botão "Limpar"
 document.getElementById('limpar').addEventListener('click', function () {
+  clear.play();
   limparItens();
 });
 
-// Evento de clique no botão "Calcular"
 document.getElementById('calcular').addEventListener('click', function () {
+  calculate.play();
   calcularResultados();
 });
 
-// Função para calcular o algoritmo da mochila
 function calcularMochila() {
   const capacidade = parseInt(document.getElementById('capacidade').value);
   const itens = document.getElementsByClassName('item');
@@ -110,7 +110,10 @@ function calcularMochila() {
   pesoTotalElement.textContent = pesoTotal;
 }
 
-// Evento de clique no botão "Calcular"
 document.getElementById('calcular').addEventListener('click', function () {
   calcularMochila();
 });
+
+window.onclick = function () {
+  pirate_music.play();
+};
